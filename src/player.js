@@ -15,7 +15,7 @@ class Player {
         const audioLoader = new AudioLoader()
         this._camera._camera.add(listener)
         this._sound = new Audio(listener)
-        audioLoader.load('../assets/audio/footstep00.ogg', buffer => {
+        audioLoader.load('../assets/audio/footstep05.ogg', buffer => {
             this._sound.setBuffer(buffer)
             this._sound.setLoop(true)
             this._sound.setVolume(0.5)

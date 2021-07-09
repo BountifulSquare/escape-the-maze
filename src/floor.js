@@ -4,7 +4,6 @@ class Floor {
     constructor() {
         const geo = new PlaneGeometry(100, 100)
         const mat = new MeshBasicMaterial({
-            // map: new TextureLoader().load('../assets/temp/p1.png')
             color: 0xF0F0F0
         })
 

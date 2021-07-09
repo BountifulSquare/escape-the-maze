@@ -5,7 +5,7 @@ import { PointerLockControls } from '../vendors/PointerLockControls.js'
 class Camera {
     constructor(canvasEL) {
         this._camera = new PerspectiveCamera(
-            45,
+            75,
             canvasEL.clientWidth / canvasEL.clientHeight,
             0.5,
             5000
@@ -62,47 +62,4 @@ class FirstPersonCamera extends Camera {
     }
 }
 
-class CameraSwitch_dev {
-    constructor(canvasEL) {
-        this._orbitCamera = new OrbitCamera(canvasEL)
-        this._firstPersonCamera = new FirstPersonCamera(canvasEL)
-        this._currentActiveCamera = 'orbit'
-        this._camera = this._orbitCamera
-
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Numpad0') {
-                if (this._currentActiveCamera === 'orbit') {
-
-                    this._currentActiveCamera = 'firstPerson'
-                    this._firstPersonCamera._active = true
-                    this._camera = this._firstPersonCamera
-
-                } else if (this._currentActiveCamera === 'firstPerson') {
-
-                    this._currentActiveCamera = 'orbit'
-                    this._firstPersonCamera._active = false
-                    this._camera = this._orbitCamera
-                
-                }
-            }
-        })
-    }
-
-    get Object3D() {
-        return this._camera.Object3D
-    }
-    get Orbit() {
-        return this._camera._orbit
-    }
-
-    get Type() {
-        return this._currentActiveCamera
-    }
-
-    updateAspect(aspect) {
-        this._camera._camera.aspect = aspect
-        this._camera._camera.updateProjectionMatrix()
-    }
-}
-
-export { OrbitCamera, FirstPersonCamera, CameraSwitch_dev }
+export { OrbitCamera, FirstPersonCamera }

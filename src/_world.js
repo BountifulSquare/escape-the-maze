@@ -1,8 +1,7 @@
 import {
-    WebGLRenderer, Scene, GridHelper, AxesHelper,
+    WebGLRenderer, Scene,
     DirectionalLight, AmbientLight, sRGBEncoding
 } from '../vendors/three.module.js'
-import Stats from '../vendors/stats.module.js'
 
 class World {
     constructor(canvas) {
@@ -16,22 +15,12 @@ class World {
         this._renderer.setSize(canvas.clientWidth, canvas.clientHeight)
         this._scene = new Scene()
 
-        if (window.ENV === 'dev') {
-            const grid = new GridHelper(200, 20)
-            const axes = new AxesHelper(10)
+        const dLight = new DirectionalLight(0xFFFFFF, 1)
+        dLight.position.set(-5, 10, 0)
+        const aLight = new AmbientLight(0.1)
 
-            const dLight = new DirectionalLight(0xFFFFFF, 1)
-            dLight.position.set(-5, 10, 0)
-            const aLight = new AmbientLight(0.1)
-
-            this._scene.add(grid)
-            this._scene.add(axes)
-            this._scene.add(dLight)
-            this._scene.add(aLight)
-
-            this._stats = new Stats()
-            document.body.appendChild(this._stats.dom)
-        }
+        this._scene.add(dLight)
+        this._scene.add(aLight)
     }
 
     addChildren(children) {
@@ -49,7 +38,6 @@ class World {
     }
 
     render(camera) {
-        this._stats.update()
         this._renderer.render(this._scene, camera)
     }
 }

@@ -1,6 +1,6 @@
 import World from './src/_world.js'
 import sky from './src/_sky.js'
-import { CameraSwitch_dev, FirstPersonCamera, OrbitCamera } from './src/_camera.js'
+import { FirstPersonCamera } from './src/_camera.js'
 import StateManager from './src/_stateManager.js'
 
 import Walls from './src/walls.js'
@@ -12,7 +12,7 @@ import { Clock } from './vendors/three.module.js'
 
 window.ENV = 'dev';
 
-(function main() {
+function main() {
     const canvasEL = document.getElementById('canvas')
     const stateManager = new StateManager(canvasEL)
 
@@ -57,42 +57,9 @@ window.ENV = 'dev';
         })
     })
 
-})();
+}
 
-(function () {
-    const canvasEL = document.getElementById('canvas')
-    document.getElementById('menu').classList.add('hidden')
-    canvasEL.classList.remove('hidden')
-
-    const world = new World(canvasEL)
-    const camera = new OrbitCamera(canvasEL)
-
-    const walls = new Walls()
-    const floor = new Floor()
-    const input = new Input()
-    // const player = new Player(camera, input)
-    const goal = new Goal()
-    const clock = new Clock()
-
-    world.addChildren(sky)
-    world.addChildren(walls.Mesh)
-    world.addChildren(floor.Mesh)
-    world.addChildren(goal.Mesh)
-
-    function run() {
-        const dt = clock.getDelta()
-
-        // if (stateManager.State === 1) {
-        //     player.update(dt, walls)
-        //     if (goal.check(camera._camera.position)) {
-        //         player.stopSound()
-        //         stateManager.stop()
-        //     }
-        // }
-
-        world.render(camera.Object3D)
-        requestAnimationFrame(run)
-    }
-    run()
-
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('0').innerText = 'Start'
+    main()
 })

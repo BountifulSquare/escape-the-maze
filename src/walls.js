@@ -1,7 +1,6 @@
 import transformation from '../data/data.js'
 import { Box3, BoxGeometry, Euler, InstancedMesh, Mesh, MeshStandardMaterial, Object3D, Vector3 } from '../vendors/three.module.js'
 
-
 class Walls {
     constructor() {
         const geo = new BoxGeometry()
